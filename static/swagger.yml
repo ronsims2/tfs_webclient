@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  title: 'TFS webclient.'
+  description: 'A simple Python3 web client for TensorFlow Serving.'
+  version: 1.0.0
+basepath: /
+paths:
+  /upload:
+    post:
+      summary: Upload an image to be segmented.
+      description: Upload an image and recieve back segmentation data.
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: formData
+          name: upload
+          type: file
+          description: User uploaded image.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        400:
+          description: ERROR
+        500:
+          description: ERROR
+  /sys/graph-metadata/signature_def:
+    get:
+      summary: Query graph metadata to see the signature def
+      description: The signature def is very useful when diagnosing issues.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        400:
+          description: ERROR
+        500:
+          description: ERROR
